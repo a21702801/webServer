@@ -8,13 +8,13 @@ const randomString = require('randomstring');
 //Importar a classe Pool
 const {Pool} = require('pg');
 
-//Criar Client para fazer conexão com a pg database
+//Criar Pool para fazer conexão com a pg database
 const pool = new Pool({
     user: "DiogoAzevedo",
     password: "1234",
     host: "localhost",
     port: 5432,
-    database: "buddyAbroad",
+    database: "buddyAbroadDb",
     max: 20,
     _connectionTimeoutMillis: 0,
     idleTimeoutMillis: 10000
@@ -36,7 +36,7 @@ router.route('/register').post( async (req,res) =>{
         };
 
     await findUserByEmail(registerRequest.email, async (err,result) =>{
-
+        console.log('Entrei em findUserbyEmail')
         if(err !== undefined) {
             res.status(500).send('Server error.');
             return;

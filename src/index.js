@@ -16,16 +16,21 @@ app.use(router);
 router.use(bodyParser.urlencoded({ extended:  false }));
 router.use(bodyParser.json());
 
+// Inserir aqui os diversos routings necessarios
+
+//Routing para pedidos de "auth"
+const auth = require('./routes/auth');
+
+app.use('/auth',auth);
+
+//Routing para pedidos de "frogotPassword"
+const ola = require('./routes/ola');
+app.use('/ola',ola);
+
 //Mensagem quando pedido get feito ao root do server
 router.get('/', (req, res) => {
     res.json({ info: 'Node.js, Express, and Postgres API' })
 });
-
-// Inserir aqui os diversos routings necessarios
-//Routing para pedidos de "auth"
-const auth = require('./routes/auth');
-app.use('/auth',auth);
-
 
 //Ouvir por pedidos feitos a "localhost:3000/"
 app.listen(PORT, () => {
